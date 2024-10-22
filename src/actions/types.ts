@@ -6,5 +6,10 @@ export interface Pomodoro {
 	createdAt: Date
 }
 
+export interface PomodoroResponse {
+	data: Pomodoro | Pomodoro[] | null;
+	error?: string;
+}
+
 export type CreatePomodoro = Omit<Pomodoro, 'id' | 'createdAt'>;
 export type UpdatePomodoro = Partial<Pick<Pomodoro, 'task' | 'duration' | 'completed'>>;
