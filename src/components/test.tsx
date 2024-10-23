@@ -12,7 +12,7 @@ const PomodoroTester = () => {
 		const [duration, setDuration] = useState(0);
 		const [completed, setCompleted] = useState(false);
 		const [id, setId] = useState('');
-		const [updateData, setUpdateData] = useState<Partial<UpdatePomodoro>>({});
+		const [updateData, setUpdateData] = useState<UpdatePomodoro>({});
 		const [result, setResult] = useState<PomodoroResponse | null>(null);
 
 		const handleCreate = async () => {
@@ -68,7 +68,7 @@ const PomodoroTester = () => {
 					<input 
 						type="checkbox" 
 						checked={completed} 
-						onChange={(e) => setCompleted(e.target.checked)} 
+						onChange={(e) => setCompleted(e.target.checked)}
 						className="form-checkbox text-indigo-600"
 					/>
 					</label>
