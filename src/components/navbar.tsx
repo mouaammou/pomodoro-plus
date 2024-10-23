@@ -16,7 +16,7 @@ export default function Navbar() {
 
 
 	return (
-		<nav className='container flex justify-between items-center w-full mx-auto py-4 px-6 bg-white dark:bg-gray-800 dark:text-white text-black border border-gray-800 rounded-lg'>
+		<nav className='flex justify-between items-center py-4 px-6 bg-white dark:bg-gray-800 dark:text-white text-black border border-gray-800 rounded-lg mb-5'>
 			<div className='text-2xl font-bold'>
 					<a href="#">
 						Logo
