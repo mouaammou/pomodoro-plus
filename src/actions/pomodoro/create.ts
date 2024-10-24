@@ -8,9 +8,9 @@ async function create(data: CreatePomodoro): Promise<PomodoroResponse> {
 	try {
 		const newPomodoro = await prisma.pomodoro.create({
 			data: {
-			task: data.task,
-			duration: data.duration,
-			completed: data.completed || false,
+				task: data.task,
+				duration: data.duration,
+				completed: data.completed || false,
 			},
 		});
 

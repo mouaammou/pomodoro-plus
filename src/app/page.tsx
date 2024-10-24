@@ -1,11 +1,6 @@
 "use client";
-import PomodoroTester from "@/components/test";
 import Navbar from "@/components/navbar";
-import AddTask from "@/components/addTask";
-import Timer from "@/components/timer";
-import UpdateTask from "@/components/updateTask";
-import DeleteTask from "@/components/deleteTask";
-import PomodoroApp from "@/components/pomodoro";
+import PomodoroApp from "@/components/pomodoroApp";
 
 
 export default function Home() {

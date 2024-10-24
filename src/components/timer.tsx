@@ -20,7 +20,7 @@ export default function PomodoroTimer({ currentTask }: { currentTask: string }) 
 				clearInterval(intervalRef.current);
 		}
 		return () => clearInterval(intervalRef.current!);
-	}, [isRunning]);
+	}, [isRunning, currentTask]);
 
 	const handleStart = () => {
 		setIsRunning(true);
@@ -43,39 +43,39 @@ export default function PomodoroTimer({ currentTask }: { currentTask: string }) 
 
 	return (
 		<div className="flex items-center justify-center">
-				<div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8 w-full max-w-sm text-center space-y-6">
-					{/* Timer Config Icon */}
-					<div className="text-2xl font-semibold text-gray-800 dark:text-gray-300 mb-4">
-						{currentTask}
-					</div>
-
-					{/* Timer Display */}
-					<div className="text-6xl font-bold text-gray-800 dark:text-gray-200">
-						{formatTime(time)}
-					</div>
-
-					{/* Timer Control Buttons */}
-					<div className="space-x-4">
-						<button
-								onClick={handleStart}
-								className="bg-indigo-600 text-white px-4 py-2 rounded-lg shadow hover:bg-indigo-500 transition"
-						>
-								Start
-						</button>
-						<button
-								onClick={handlePause}
-								className="bg-yellow-500 text-white px-4 py-2 rounded-lg shadow hover:bg-yellow-400 transition"
-						>
-								Pause
-						</button>
-						<button
-								onClick={handleReset}
-								className="bg-red-600 text-white px-4 py-2 rounded-lg shadow hover:bg-red-500 transition"
-						>
-								Reset
-						</button>
-					</div>
+			<div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8 w-full max-w-sm text-center space-y-6">
+				{/* Timer Config Icon */}
+				<div className="text-2xl font-semibold text-gray-800 dark:text-gray-300 mb-4">
+					{currentTask}
 				</div>
+
+				{/* Timer Display */}
+				<div className="text-6xl font-bold text-gray-800 dark:text-gray-200">
+					{formatTime(time)}
+				</div>
+
+				{/* Timer Control Buttons */}
+				<div className="space-x-4">
+					<button
+							onClick={handleStart}
+							className="bg-indigo-600 text-white px-4 py-2 rounded-lg shadow hover:bg-indigo-500 transition"
+					>
+							Start
+					</button>
+					<button
+							onClick={handlePause}
+							className="bg-yellow-500 text-white px-4 py-2 rounded-lg shadow hover:bg-yellow-400 transition"
+					>
+							Pause
+					</button>
+					<button
+							onClick={handleReset}
+							className="bg-red-600 text-white px-4 py-2 rounded-lg shadow hover:bg-red-500 transition"
+					>
+							Reset
+					</button>
+				</div>
+			</div>
 		</div>
 	);
 }

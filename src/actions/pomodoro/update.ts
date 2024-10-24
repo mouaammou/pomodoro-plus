@@ -3,13 +3,13 @@
 import prisma from "@lib/prisma";
 import { PomodoroResponse, UpdatePomodoro } from "@types";
 
-async function update(id: string, data: UpdatePomodoro): Promise<PomodoroResponse> {
+async function update(id: number, data: UpdatePomodoro): Promise<PomodoroResponse> {
 	try {
 		const updatedPomodoro = await prisma.pomodoro.update({
-				where: { id: parseInt(id) },
+				where: { id },
 				data,
 		});
-
+		
 		if (!updatedPomodoro) {
 				return { data: null, error: "Failed to update pomodoro" };
 		}

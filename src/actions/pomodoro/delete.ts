@@ -1,12 +1,12 @@
-"use server"
+"use server";
 
 import prisma from "@lib/prisma";
 import { PomodoroResponse } from "@types";
 
-async function deletePomodoro(id: string): Promise<PomodoroResponse> {
+async function deletePomodoro(id: number): Promise<PomodoroResponse> {
 	try {
 		const deletedPomodoro = await prisma.pomodoro.delete({
-				where: { id: parseInt(id) },
+			where: { id },
 		});
 
 		if (!deletedPomodoro) {

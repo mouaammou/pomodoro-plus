@@ -1,21 +1,35 @@
 import { useState } from "react";
+import update from "@actions/update"; // Ensure the path to `update` is correct.
+import { PomodoroResponse, UpdatePomodoro } from "@types";
 
 interface UpdateTaskProps {
 	setUpdateComponent: (value: boolean) => void;
 	setTaskName: (value: string) => void;
 	taskName: string;
+	taskId: number; // Add taskId to props
+	setCurrentTask: (task: string) => void;
 }
 
 export default function UpdateTask({
-		setUpdateComponent,
-		setTaskName,
-		taskName
-	}: UpdateTaskProps) {
-	
+	setUpdateComponent,
+	setTaskName,
+	taskName,
+	taskId, // Destructure taskId
+	setCurrentTask,
+}: UpdateTaskProps) {
 	const [localTaskName, setLocalTaskName] = useState(taskName);
-	const handleSave = () => {
-		setTaskName(localTaskName);
-		setUpdateComponent(false);
+	const [error, setError] = useState<string | null>(null);
+
+	const handleSave = async () => {
+		const data: UpdatePomodoro = { task: localTaskName };
+		const response: PomodoroResponse = await update(taskId, data);
+
+		if (response.error) {
+			setError(response.error);
+		} else if (response.data) {
+			setTaskName(localTaskName);
+			setUpdateComponent(false);
+		}
 	};
 
 	const handleCancel = () => {
@@ -33,9 +47,16 @@ export default function UpdateTask({
 						className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-gray-200 text-black"
 						placeholder="Enter task name"
 						value={localTaskName}
-						onChange={(e) => setLocalTaskName(e.target.value)}
+						onChange={(e) => {
+							setLocalTaskName(e.target.value);
+							setCurrentTask(e.target.value); // Update the task name in the parent component
+							setError(null); // Clear error message on input change
+						}}
 					/>
 				</div>
+
+				{/* Error Message */}
+				{error && <p className="text-red-500">{error}</p>}
 
 				{/* Update Button */}
 				<div className="flex space-x-4">

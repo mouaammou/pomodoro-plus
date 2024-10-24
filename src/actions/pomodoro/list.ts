@@ -10,6 +10,7 @@ async function listPomodoros(): Promise<PomodoroResponse> {
 		if (!pomodoros) {
 			return { data: null, error: "Failed to list pomodoros" };
 		}
+		
 		return { data: pomodoros };
 	} catch (error) {
 		return { data: null, error: "Failed to list pomodoros" };
