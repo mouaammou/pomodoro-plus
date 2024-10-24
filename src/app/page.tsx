@@ -5,7 +5,7 @@ import PomodoroApp from "@/components/pomodoroApp";
 
 export default function Home() {
 	return (
-		<div className="container w-full mx-auto">
+		<div className="container w-full mx-auto mt-5">
 			<Navbar />
 			<PomodoroApp />
 		</div>

@@ -100,11 +100,16 @@ export default function PomodoroTimer({ currentTask }: { currentTask: string }) 
 					</button>
 				))}
 			</div>
+				<div className="flex items-center justify-center bg-gray-800/50 rounded-lg p-4 shadow-md mb-6">
+				<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-400 mr-2 animate-pulse" viewBox="0 0 20 20" fill="currentColor">
+					<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-10.707a1 1 0 00-1.414 0L9 10.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4a1 1 0 000-1.414z" clipRule="evenodd" />
+				</svg>
+				<div className="text-center">
+					<span className="text-gray-400 text-lg">Sessions completed: </span>
+					<span className="text-white font-extrabold text-2xl ml-2">{sessions}</span>
+				</div>
+				</div>
 
-			<div className="text-center mb-6">
-				<span className="text-white/60">Sessions completed: </span>
-				<span className="text-white font-bold">{sessions}</span>
-			</div>
 
 			<div className="bg-white/5 rounded-2xl p-4 mb-12 text-center">
 				<h2 className={`text-2xl font-bold bg-gradient-to-r ${getModeColor()} bg-clip-text text-transparent`}>
