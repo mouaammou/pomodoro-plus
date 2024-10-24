@@ -27,7 +27,7 @@ The backend of the application uses `server actions` and the `Prisma` ORM for da
 3. **Set up environment variables**:
 	Create a `.env` file in the root of your project. Add the following environment variables:
 	```bash
-	DATABASE_URL=file:./database.db
+	DATABASE_URL=file:database.db
 	```
 
 4. **Migrate Prisma**:
@@ -45,14 +45,14 @@ The backend of the application uses `server actions` and the `Prisma` ORM for da
 5. **Open the app in your browser**:
 	Go to http://localhost:3000.
 
+
 ## Project Structure
 The project structure is as follows:
 
-- `lib`: Contains utility functions and modules used throughout the application.
+- `lib`: Contains prisma client.
 - `prisma`: Contains the Prisma configuration and database schema files.
 - `src`: Contains the source code of the application.
 	- `components`: Contains reusable React components used in the application.
 	- `app`: Contains the main application logic and components.
-	- `actions`: Contains action files for different features of the application.
-		- `pomodoro`: Contains action files specific to the Pomodoro feature.
+	- `actions`: Contains action files and types.
 
