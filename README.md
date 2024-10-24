@@ -27,7 +27,7 @@ The backend of the application uses `server actions` and the `Prisma` ORM for da
 3. **Set up environment variables**:
 	Create a `.env` file in the root of your project. Add the following environment variables:
 	```bash
-	DATABASE_URL=file:database.db
+	echo DATABASE_URL=file:database.db > .env
 	```
 
 4. **Migrate Prisma**:
