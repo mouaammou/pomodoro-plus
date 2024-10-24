@@ -17,18 +17,35 @@
 body {
 	color: var(--foreground);
 	font-family: Arial, Helvetica, sans-serif;;
-	background: var(--bg);
 }
 
-@keyframes progress {
-	0% {
-		stroke-dasharray: 0 100;
+@layer base {
+	body {
+		@apply min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-teal-800 
+		bg-fixed text-gray-100 antialiased transition-colors duration-300;
 	}
-	100% {
-		stroke-dasharray: 100 100;
-	}
-}
 
-.animate-progress {
-	animation: progress 25s linear forwards;
+	/* Dark mode gradient */
+	.dark body {
+		@apply from-slate-950 via-gray-900 to-slate-900;
+	}
+
+	/* Optional: Add a subtle noise texture overlay */
+	body::before {
+		@apply fixed inset-0 z-[-1] content-[''];
+		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+		opacity: 0.05;
+	}
+
+	/* Optional: Add a subtle animated gradient movement */
+	/* @keyframes gradient {
+		0% { background-position: 0% 50%; }
+		50% { background-position: 100% 50%; }
+		100% { background-position: 0% 50%; }
+	} */
+
+	body {
+		background-size: 200% 200%;
+		animation: gradient 15s ease infinite;
+	}
 }
