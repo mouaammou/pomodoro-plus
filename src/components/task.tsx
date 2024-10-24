@@ -67,54 +67,89 @@ export default function TaskPomodoro({
 				setCurrentTask={setCurrentTask}
 			/>
 		) : (
-			<div
-				className={`mb-5 flex items-center justify-between p-4 shadow-md rounded-lg w-96 transition-all duration-500 ease-in-out
-				${visible ? '' : 'hidden'}
-				${isCompleted ? 'bg-gray-200 dark:bg-gray-700' : isFocused ? 'bg-green-500 dark:bg-blue-700' : 'bg-white dark:bg-gray-800'}`}
-				onClick={() => {
-					handleFocusTask(taskId);
-					setCurrentTask(taskName);
-				}}
+		<div
+			className={`group relative mb-5 w-full max-w-2xl transform cursor-pointer overflow-hidden rounded-xl border border-white/10 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl
+				${visible ? 'opacity-100' : 'hidden opacity-0'}
+				${isCompleted 
+					? 'bg-gray-100/80 dark:bg-gray-800/50' 
+					: isFocused 
+					? 'bg-gradient-to-r from-emerald-500/90 to-teal-500/90 shadow-emerald-500/20' 
+					: 'bg-white/80 dark:bg-gray-800/80'
+				}`}
+			onClick={() => {
+				handleFocusTask(taskId);
+				setCurrentTask(taskName);
+			}}
 			>
-				<div className="iscompleted flex items-center">
-					<input
-						type="checkbox"
-						className="form-checkbox text-indigo-600 dark:text-indigo-400 h-5 w-5"
-						checked={isCompleted}
-						onChange={handleCheckboxChange}
-					/>
-				</div>
+  {/* Hover effect overlay */}
+  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-				{/* Task name */}
-				<div className="taskname flex-1 ml-4">
-					<h2 className={`text-xl font-semibold transition-colors duration-300
-						${isCompleted ? 'line-through text-gray-500 dark:text-gray-400' : 'text-gray-800 dark:text-gray-200'}`}>
-						<span className='cursor-pointer'>
-								{taskName}
-						</span>
-					</h2>
-				</div>
+  <div className="relative flex items-center justify-between p-5">
+    {/* Checkbox container */}
+    <div className="flex items-center">
+      <div className="relative">
+        <input
+          type="checkbox"
+          checked={isCompleted}
+          onChange={handleCheckboxChange}
+          className="peer h-6 w-6 cursor-pointer appearance-none rounded-md border-2 border-gray-300 bg-white transition-all checked:border-emerald-500 checked:bg-emerald-500 dark:border-gray-600 dark:bg-gray-700"
+        />
+        <svg
+          className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 transition-opacity peer-checked:opacity-100"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={3}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+    </div>
 
-				{/* Delete Task */}
-				<div className="edit_task flex items-center">
-					<button
-						className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-500"
-						onClick={() => {
-							handleDelete(taskId);
-						}}
-					>
-						<FaTrash className="w-5 h-5" />
-					</button>
-				</div>
+    {/* Task name */}
+    <div className="flex-1 px-6">
+      <h2 className={`text-xl font-medium tracking-wide transition-all duration-300
+        ${isCompleted 
+          ? 'line-through text-gray-400 dark:text-gray-500' 
+          : isFocused
+            ? 'text-white'
+            : 'text-gray-700 dark:text-gray-200'
+        }`}>
+        {taskName}
+      </h2>
+    </div>
 
-				{/* Edit Task */}
-				<div
-					className="edit_task flex items-center"
-					onClick={handleUpdate}
-				>
-					<FiEdit className="h-5 w-5 text-gray-600 dark:text-gray-300 ml-5 cursor-pointer hover:text-gray-400 transition-all ease-linear" />
-				</div>
-			</div>
+    {/* Actions container */}
+    <div className="flex items-center space-x-3">
+      {/* Edit button */}
+      <button
+        onClick={handleUpdate}
+        className={`rounded-lg p-2 transition-colors duration-200
+          ${isFocused
+            ? 'hover:bg-white/20 text-white'
+            : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400'
+          }`}
+      >
+        <FiEdit className="h-5 w-5" />
+      </button>
+
+      {/* Delete button */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          handleDelete(taskId);
+        }}
+        className={`rounded-lg p-2 transition-colors duration-200
+          ${isFocused
+            ? 'text-white/90 hover:bg-white/20'
+            : 'text-red-500 hover:bg-red-50 dark:hover:bg-red-500/20'
+          }`}
+      >
+        <FaTrash className="h-5 w-5" />
+      </button>
+    </div>
+  </div>
+</div>
 		)
 	);
 }
