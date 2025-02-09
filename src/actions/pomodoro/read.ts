@@ -15,6 +15,7 @@ async function readPomodoro(id: string): Promise<PomodoroResponse> {
 
 		return { data: pomodoro };
 	} catch (error) {
+		console.error(error);
 		return { data: null, error: "Failed to read pomodoro" };
 	}
 }

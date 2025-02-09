@@ -13,6 +13,7 @@ async function listPomodoros(): Promise<PomodoroResponse> {
 		
 		return { data: pomodoros };
 	} catch (error) {
+		console.error(error);
 		return { data: null, error: "Failed to list pomodoros" };
 	}
 }

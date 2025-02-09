@@ -15,6 +15,7 @@ async function deletePomodoro(id: number): Promise<PomodoroResponse> {
 
 		return { data: deletedPomodoro };
 	} catch (error) {
+		console.error(error);
 		return { data: null, error: "Failed to delete pomodoro" };
 	}
 }

@@ -16,6 +16,7 @@ async function update(id: number, data: UpdatePomodoro): Promise<PomodoroRespons
 
 		return { data: updatedPomodoro };
 	} catch (error) {
+		console.error(error);
 		return { data: null, error: "Failed to update pomodoro" };
 	}
 }

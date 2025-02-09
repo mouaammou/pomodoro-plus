@@ -13,13 +13,13 @@ async function create(data: CreatePomodoro): Promise<PomodoroResponse> {
 				completed: data.completed || false,
 			},
 		});
-
 		if (!newPomodoro) {
 			return { data: null, error: "Failed to create pomodoro" };
 		}
 
 		return { data : newPomodoro};
 	} catch (error) {
+		console.error(error);
 		return { data: null, error: "Failed to create pomodoro" };
 	}
 }

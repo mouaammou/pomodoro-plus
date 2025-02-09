@@ -19,6 +19,7 @@ export default function AddTask({ tasks, setTasks }: AddTaskProps) {
 		if (task.trim()) {
 			startTransition(async () => {
 				const response = await create({ task, duration: 25, completed: false }); // Adjust `duration` as needed
+				console.log(response);
 				if (response.error) {
 					setError(response.error);
 				} else if (response.data) {
